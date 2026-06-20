@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TranscreveJá</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <section class="hero">
+      <div class="card">
+        <header class="hero-header">
+          <div>
+            <p class="eyebrow">TranscreveJá</p>
+            <h1>Transforme áudios em texto em poucos segundos</h1>
+            <p class="subtitle">
+              Faça upload de arquivos mp3, wav, m4a ou ogg e receba a transcrição
+              limpa, pronta para copiar ou baixar.
+            </p>
+          </div>
+          <div class="badge">Limite gratuito: 10 minutos por áudio</div>
+        </header>
+
+        <form id="upload-form" class="upload-form">
+          <label class="file-input-label" for="audioFile">
+            <span>Arraste e solte ou escolha um arquivo de áudio</span>
+            <input id="audioFile" name="audio_file" type="file" accept="audio/*" />
+          </label>
+
+          <div class="upload-info">
+            <p id="selected-file">Nenhum arquivo selecionado</p>
+            <p class="hint">Suporta mp3, wav, m4a e ogg. Tamanho máximo 150MB.</p>
+          </div>
+
+          <button type="submit" class="primary-button">Transcrever Agora</button>
+
+          <div class="progress-container" id="progress-container" hidden>
+            <span>Enviando arquivo...</span>
+            <div class="progress-bar">
+              <div id="upload-progress" class="progress-fill"></div>
+            </div>
+          </div>
+
+          <div id="status-box" class="status-box" hidden>
+            <p id="status-text"></p>
+          </div>
+        </form>
+
+        <section id="result-panel" class="result-panel" hidden>
+          <div class="result-header">
+            <div>
+              <h2>Transcrição concluída</h2>
+              <p class="result-meta" id="processing-meta"></p>
+            </div>
+            <div class="actions-row">
+              <button id="copy-button" class="secondary-button">Copiar Texto</button>
+              <button id="download-button" class="secondary-button">Baixar TXT</button>
+            </div>
+          </div>
+
+          <div class="transcript-card">
+            <pre id="transcript-text" class="transcript-text"></pre>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <script src="/static/script.js"></script>
+    <!-- Futuro: suporte a login de usuário ou integração com Stripe/Mercado Pago -->
+  </body>
+</html>
