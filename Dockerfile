@@ -1,4 +1,4 @@
-FROM python:3.11-slim
+FROM python:3.10-slim
 
 # Não gerar arquivos .pyc e deixar a saída do Python sem buffer
 ENV PYTHONDONTWRITEBYTECODE=1
