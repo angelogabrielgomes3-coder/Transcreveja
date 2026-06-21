@@ -1,4 +1,5 @@
 import asyncio
+import logging
 import os
 import time
 from pathlib import Path
@@ -26,10 +27,14 @@ app.mount("/static", StaticFiles(directory=str(BASE_DIR / "static")), name="stat
 templates = Jinja2Templates(directory=str(BASE_DIR / "templates"))
 
 # Carrega o modelo Whisper localmente na inicialização
-# Futuramente, aqui pode incluir seleção de modelo Premium ou modos avançados
-# Futuro: adicionar suporte a diferentes idiomas e perfil de voz premium
-# Futuro: carregar modelo condicional para planos de maior desempenho
-model = whisper.load_model("large")
+# Usa um modelo menor por padrão para evitar falhas de memória em máquinas com pouco RAM.
+# Se `small` falhar, faz fallback para `tiny`.
+# Futuramente, aqui pode incluir seleção de modelo Premium ou modos avançados.
+try:
+    model = whisper.load_model("small")
+except MemoryError:
+    logging.warning("Memória insuficiente para carregar o modelo small; usando tiny.")
+    model = whisper.load_model("tiny")
 
 
 class TranscriptionResult(BaseModel):
